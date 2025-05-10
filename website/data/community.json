@@ -1,12 +1,28 @@
 [
   {
+    "//content guidelines": "Please provide details for your community entry as an object below, according to the following content guidelines. The FDC3 maintainers reserve the right to reject any entry that does not meet these content guidelines.",
+    "//title": "The title for your entry, up to 65 characters",
+    "//publisher": "The name of your organisation, up to 100 characters",
+    "//image": "Please provide a PNG or SVG image for your entry, these may be added to the website/static/img/users folder in the FDC3 repo",
+    "//infolink": "(optional) provide a URL to get more info about your entry",
+    "//docslink": "(optional) provide a URL to the documentation for your app or platform",
+    "//type": "Select a type for your entry from the following: platform-provider, application-provider, solution-provider, adopter, tools-and-training, demos, other",
+    "//badges": "Set one or more badges for your entry as objects with a 'text' property with one of the following values:",
+    "//badges1": "Open Source: Indicates that the project source code is available to download and modify, under an Apache 2.0 or similar license.",
+    "//badges2": "FDC3 1.2 Supported: Indicates that this product advertises compatibility with the FDC3 1.2 Standard.",
+    "//badges3": "FDC3 2.0 Supported: Indicates that this product advertises compatibility with the FDC3 2.0 Standard.",
+    "//badges4": "FDC3 1.2 Compliant: This badge is applied to desktop agents that have passed the FINOS FDC3 1.2 Conformance testing process.",
+    "//badges5": "FDC3 2.0 Compliant: This badge is applied to desktop agents that have passed the FINOS FDC3 2.0 Conformance testing process.",
+    "//conformance": "Indicate that a desktop agent has passed a FINOS FDC3 Conformance testing process - see other entries for examples of how to set this.",
+    "//description": "A description to be displayed by your entry. Please limit to 100 words and avoid the use of superlatives (e.g. easiest, best, most powerful etc.) or other descriptive content that may be disputed by other community members."
+  },
+  {
     "title": "Introduction to FDC3 (LFEL1000)",
     "publisher": "Linux Foundation",
     "image": "/img/training/LFEL1000.png",
     "infoLink": "https://training.linuxfoundation.org/express-learning/introduction-to-fdc3-lfel1000/",
-    "type": "examples-and-training",
-    "badges": [
-    ],
+    "type": "tools-and-training",
+    "badges": [],
     "description": "<p>This <strong>FREE</strong> entry-level course is designed for business technologists who are looking to adopt application interoperability within their technology landscape and for developers who want to build interoperable applications using the FDC3 Standard.</p>"
   },
   {
@@ -14,9 +30,8 @@
     "publisher": "Linux Foundation",
     "image": "/img/training/LFD237.png",
     "infoLink": "https://training.linuxfoundation.org/training/developing-solutions-with-fdc3-lfd237/",
-    "type": "examples-and-training",
-    "badges": [
-    ],
+    "type": "tools-and-training",
+    "badges": [],
     "description": "<p>This course is designed for developers who are looking to build interoperable applications using the FDC3 standard, as well as community participants who provide FDC3 technology and services.</p><p>LFD237 is priced at $299 but free seats are available to FINOS members.</p>"
   },
   {
@@ -24,9 +39,8 @@
     "publisher": "Linux Foundation",
     "image": "/img/training/FCFP.png",
     "infoLink": "https://training.linuxfoundation.org/certification/finos-certified-fdc3-practitioner/",
-    "type": "examples-and-training",
-    "badges": [
-    ],
+    "type": "tools-and-training",
+    "badges": [],
     "description": "<p>The FCFP is a professional certification designed for technical business analysts, software developers and FDC3 implementers in the finance, insurance, banking, and investment industries.</p><p>FCFP is priced at $250 but free seats are available to FINOS members.</p>"
   },
   {
@@ -50,7 +64,11 @@
     "infoLink": "https://github.com/finos/FDC3-Sail",
     "docsLink": "https://github.com/finos/FDC3-Sail",
     "type": "platform-provider",
-    "badges": [],
+    "badges": [
+      {
+        "text": "Open Source"
+      }
+    ],
     "conformance": [
       {
         "src": "/img/community/certified-1.2.png",
@@ -63,16 +81,6 @@
       }
     ],
     "description": "<p>This project provides a fully open source implementation of the FDC3 interoperability standard. </p><p>Includes a fully featured and secure electron desktop agent featuring intent resolution, channel linking, directory search and a local file-based app directory implementation. </p>"
-  },
-  {
-    "title": "FDC3 Desktop Agent Chrome Extension",
-    "publisher": "FINOS",
-    "image": "/img/users/fdc3-desktop-agent.png",
-    "infoLink": "https://github.com/finos/fdc3-desktop-agent",
-    "docsLink": "https://github.com/finos/fdc3-desktop-agent",
-    "type": "platform-provider",
-    "badges": [],
-    "description": "<p>The FDC3 Desktop Agent is an open source implementation of FDC3 as a Chrome Extension. </p><p> Its purpose is to provide a quick and easy way for app developers to get started with the FDC3 APIs. </p> "
   },
   {
     "title": "Finsemble",
@@ -109,9 +117,13 @@
     "publisher": "FDC3 / FINOS",
     "image": "/toolbox/fdc3-workbench/fdc3-icon-256.png",
     "infoLink": "http://fdc3.finos.org/toolbox/fdc3-workbench",
-    "docsLink": "https://github.com/finos/FDC3/blob/master/toolbox/fdc3-workbench/README.md",
-    "type": "examples-and-training",
-    "badges": [],
+    "docsLink": "https://github.com/finos/FDC3/blob/main/toolbox/fdc3-workbench/README.md",
+    "type": "tools-and-training",
+    "badges": [
+      {
+        "text": "Open Source"
+      }
+    ],
     "description": "<p>When developing an FDC3-compliant app or desktop agent, you need to test. Because FDC3 is about communicating, you need at least one other app to communicate with. You could grab an existing app, but there may not be one available that uses the messaging you need to test.</p><p>Many developers end up writing their own helper tool, which they often discard when the work on their app is done. We've seen so many devs create these throwaway apps that the Finsemble team decided to build and contribute a workbench (for any FDC3-compliant platform provider) that helps develop and test your app without writing throwaway code.</p>"
   },
   {
@@ -119,9 +131,13 @@
     "publisher": "FDC3 / FINOS / ScottLogic",
     "image": "/img/community/conformance.svg",
     "infoLink": "https://github.com/finos/FDC3-conformance-framework",
-    "docsLink": "https://github.com/finos/FDC3/blob/master/toolbox/fdc3-conformance/README.md",
-    "type": "examples-and-training",
-    "badges": [],
+    "docsLink": "https://github.com/finos/FDC3/blob/main/toolbox/fdc3-conformance/README.md",
+    "type": "tools-and-training",
+    "badges": [
+      {
+        "text": "Open Source"
+      }
+    ],
     "description": "<p>As part of FINOS' commitment to the FDC3 standard, ScottLogic have been engaged to produce a conformance testing framework for desktop agent API compatibility.  Delivered as a set of FDC3 Applications, this Conformance pack will test 1.2 and 2.0 compatibility by exercising a desktop agent's implementation of the FDC3 API.</p>"
   },
   {
@@ -129,9 +145,13 @@
     "publisher": "FDC3 / FINOS",
     "image": "/toolbox/fdc3-explained/logo.png",
     "infoLink": "https://fdc3.finos.org/toolbox/fdc3-explained",
-    "docsLink": "https://github.com/finos/FDC3/blob/master/toolbox/fdc3-explained/README.md",
-    "type": "examples-and-training",
-    "badges": [],
+    "docsLink": "https://github.com/finos/FDC3/blob/main/toolbox/fdc3-explained/README.md",
+    "type": "demos",
+    "badges": [
+      {
+        "text": "Open Source"
+      }
+    ],
     "description": "FDC3 eXplained is a no-frills tool for learning more about FDC3 concepts without requiring any engineering or coding knowledge. Click the buttons and see the API response, type in context and broadcast it. No dependencies, libraries or frameworks - just a single html page per version that you can load in any environment. Similar to FDC3 Workbench it provides a reference implementation for you to test and verify the FDC3 functionality of other applications and desktop agents."
   },
   {
@@ -160,7 +180,7 @@
           }
         ]
       },
-       {
+      {
         "src": "/img/community/certified-2.0.png",
         "items": [
           {
@@ -181,14 +201,14 @@
     "description": "<p>interop.io was formed in June 2023 through the merger of Finsemble and Glue42 to create the global powerhouse driving application interoperability in capital markets and beyond. Leveraging FDC3 and workflow automation, interop.io allows clients to create Straight Through Workflows™ and benefit from unparalleled levels of business agility, a more productive workforce and better operational control.</p><p>The firm employs over 170 people including 110 full time R&D and implementation engineers located in New York, Charlottesville, London, and Sofia. For more information, visit <a href='https://interop.io' alt='interop.io website'>interop.io</a>.</p>"
   },
   {
-    "title": "OpenFin",
-    "publisher": "OpenFin Inc.",
-    "image": "/img/users/Openfin.png",
-    "infoLink": "https://openfin.co/",
+    "title": "Here",
+    "publisher": "Here Enterprise Inc.",
+    "image": "/img/users/OpenFin_Here_Browser_250x120.png",
+    "infoLink": "https://here.io/",
     "docsLink": "https://developers.openfin.co/of-docs",
     "type": "platform-provider",
     "badges": [],
-    "description": "<p>OpenFin founded the FDC3 standard in 2017 in collaboration with major banks and asset managers. Deployed at more than 2400 financial firms, OpenFin OS, allows applications from multiple providers to co-exist and interoperate on the desktop.</p><p>OpenFin OS consists of a secure, Chromium-based runtime called Container and a visual interface called <a href='https://www.openfin.co/workspace/' alt='OpenFin Workspace'>Workspace</a>. Workspace gets you running in no time, with themeable UI components for complex windowing, advanced search, actionable notifications and application discovery.</p><p>You can also build your own solutions using the <a href='https://www.openfin.co/container/' alt='OpenFin Container'>OpenFin Container</a>, native language <a href='https://www.openfin.co/container/adapters/' alt='OpenFin Native Adapters'>adapters</a> and APIs while remaining compatible with everything else built on OpenFin.</p>",
+    "description": "<p>Here&#8482; (formerly OpenFin) founded the FDC3 standard in 2017 in collaboration with major banks and asset managers. Deployed at more than 2400 financial firms, OpenFin OS, allows applications from multiple providers to co-exist and interoperate on the desktop.</p><p>OpenFin OS consists of a secure, Chromium-based runtime called Container and a visual interface called <a href='https://www.openfin.co/workspace/' alt='OpenFin Workspace'>Workspace</a>. Workspace gets you running in no time, with themeable UI components for complex windowing, advanced search, actionable notifications and application discovery.</p><p>You can also build your own solutions using the <a href='https://www.openfin.co/container/' alt='OpenFin Container'>OpenFin Container</a>, native language <a href='https://www.openfin.co/container/adapters/' alt='OpenFin Native Adapters'>adapters</a> and APIs while remaining compatible with everything else built on OpenFin.</p>",
     "conformance": [
       {
         "src": "/img/community/certified-1.2.png",
@@ -207,7 +227,7 @@
             "link": "https://www.finos.org/press/finos-announces-fdc3-2.1"
           }
         ]
-      }    
+      }
     ]
   },
   {
@@ -216,8 +236,12 @@
     "image": "/img/community/lf.png",
     "infoLink": "https://www.youtube.com/watch?v=JSEAC_1rku8",
     "description": "Kris West (Finsemble) introduces FDC3 and the FDC3 Workbench at the October 2021 Open Source Strategy Forum in London. ",
-    "badges": [],
-    "type": "examples-and-training"
+    "badges": [
+      {
+        "text": "Open Source"
+      }
+    ],
+    "type": "other"
   },
   {
     "title": "Building an FDC3-enabled Web Application",
@@ -226,7 +250,7 @@
     "infoLink": "https://www.youtube.com/watch?v=BJvbVeL7ZJA",
     "description": "Riko Eksteen (Adaptive Financial Consulting) explains why and how to build an FDC3-enabled application at the December 2020 Open-Source Strategy Forum",
     "badges": [],
-    "type": "examples-and-training"
+    "type": "demos"
   },
   {
     "title": "Symphony Demo - FDC3",
@@ -235,7 +259,7 @@
     "infoLink": "https://www.youtube.com/watch?v=wMF1h7RaAJY",
     "description": "This demo showcases Symphony’s interoperability, flexibility and open architecture via FDC3 protocol. Leveraging FDC3, data and information can be seamlessly shared across multiple platforms on the same desktop. In this demo we showcase FX liquidity pricing via Tradefeedr, and data and trading analytics via S&P Global’s ChartIQ and Finsemble.",
     "badges": [],
-    "type": "examples-and-training"
+    "type": "demos"
   },
   {
     "title": "FDC3: A Review of Industry Activity - Matt Barrett & Sachin Gaba",
@@ -244,7 +268,7 @@
     "infoLink": "https://www.youtube.com/watch?v=w1d0d1nM8iI",
     "description": "9 Oct 2021  FDC3: A Review of Industry Activity - Matt Barrett, Adaptive Financial Consulting & Sachin Gaba, State Street.  “Since we last gathered in person, FDC3 usage has seen incredible growth. This talk will provide an overview of FDC3 usage across the industry, highlighting both internal and external usage. We will cover high-impact FDC3 usage and identify some key themes and trends. I’ll share some predictions about the next year of FDC3 growth, and identify missed opportunities.",
     "badges": [],
-    "type": "examples-and-training"
+    "type": "other"
   },
   {
     "title": "FDC3 Google Groups",
@@ -253,7 +277,7 @@
     "infoLink": "https://groups.google.com/a/finos.org/g/fdc3",
     "description": "A (fairly active) Google group where you can get involved with the FDC3 project.   Talk with implementers, ask questions, find answers and hear the latest news on the FDC3 project.",
     "badges": [],
-    "type": "examples-and-training"
+    "type": "other"
   },
   {
     "title": "S&P Front Office",
@@ -362,7 +386,7 @@
         "text": "Open Source"
       }
     ],
-    "type": "examples-and-training"
+    "type": "demos"
   },
   {
     "title": "Reactive Analytics",
@@ -379,7 +403,7 @@
         "text": "Open Source"
       }
     ],
-    "type": "examples-and-training"
+    "type": "demos"
   },
   {
     "title": "Consulting Services",
@@ -392,15 +416,6 @@
     "type": "solution-provider"
   },
   {
-    "title": "Pictet AM smart Desktop",
-    "publisher": "Pictet Asset Management",
-    "image": "/img/users/pictet.png",
-    "infoLink": "https://am.pictet",
-    "description": "Pictet AM smart Desktop - linking our internal PMS (proprietary), our OMS (Charles River IMS) and various in-house react.js applications implementing FDC3 to share context and intents to provide a streamlined experience for Traders and Fund managers.",
-    "badges": [],
-    "type": "adopter"
-  },
-  {
     "title": "Connectifi",
     "publisher": "Connectifi Co.",
     "image": "/img/users/connectifi.png",
@@ -408,7 +423,7 @@
     "description": "Connectifi provides FDC3 interop as a cloud service, empowering organizations to connect anything, anywhere, in a security-first environment that does not require installs.\n\nUse Connectifi to leverage FDC3 in standard browser and mobile environments, to expand the reach and ROI of your existing desktop tech stack, and to create secure and verifiable interop channels between mission critical applications.",
     "badges": [],
     "type": "platform-provider",
-     "conformance": [
+    "conformance": [
       {
         "src": "/img/community/certified-1.2.png",
         "items": [
@@ -417,7 +432,7 @@
             "link": "https://www.finos.org/blog/fdc3-news-1.2-agent-conformance-language-bindings"
           }
         ]
-      }  
+      }
     ]
   },
   {
@@ -457,16 +472,16 @@
     "infoLink": "https://www.meetup.com/fdc3-sweden/",
     "description": "FDC3 Sweden is organized in partnership with FINOS. The meetup aims to expand contributions to and consumption of FDC3 open standards for financial desktop technologies. The meetup also wants to grow a healthy engineering community in Sweden's financial services industry. Join the <a href='https://www.meetup.com/fdc3-sweden/' target='_blank' rel='noopener noreferrer'>FDC3 Sweden Meetup Here</a>.",
     "badges": [],
-    "type": "meetup"
+    "type": "other"
   },
- {
+  {
     "title": "CAS Workflow",
     "publisher": "comitFS",
-    "image": "https://www.comitfs.com/assets/img/logo@2x.png",
+    "image": "https://www.comitfs.com/assets/img/logo@2x.webp",
     "infoLink": "https://www.comitfs.com/cas-workflow.html",
     "docsLink": "",
     "description": "comitFS has been delivering a Telephony Integration Middleware dedicated to the the financial community for 20 years. Recently we have been exploring how to leverage FDC3 capabilities to bring call control and call based contextual data to user's desktops.",
-        "badges": [
+    "badges": [
       {
         "text": "FDC3 1.2 Supported"
       },
@@ -485,7 +500,7 @@
     "badges": [],
     "type": "adopter"
   },
-    {
+  {
     "title": "Dow Jones Newswires",
     "publisher": "Dow Jones",
     "image": "/img/users/Dow_Jones_Logo.png",
@@ -494,5 +509,106 @@
     "description": "Dow Jones’ Interoperable Modules enable seamless integration of Dow Jones’ news into workflows, applications and content. Featuring premium financial and business content from trusted Dow Jones brands such as The Wall Street Journal, Barron’s, MarketWatch and Investor’s Business Daily, these news and data modules leverage FDC3 standards to enhance system interoperability. <br /> <br />As part of the workspace ecosystem, Dow Jones’ news and data modules help financial services firms optimize the financial professional’s experience. Modules are easily integrated into your company’s workflow, analytics and other platforms to make it easier to offer a personalized user experience. ",
     "badges": [],
     "type": "application-provider"
+  },
+  {
+    "title": "Interop Security Scorecard",
+    "publisher": "Connectifi Co.",
+    "image": "/img/users/connectifi.png",
+    "infoLink": "https://hubs.ly/Q02krHRh0",
+    "docsLink": "https://www.connectifi.co/post/interop-security-scorecard",
+    "type": "tools-and-training",
+    "badges": [],
+    "description": "Questions about security and identity in FDC3 are even more critical now, as adopters look to address higher value use cases through application interoperability.  The Interop Security Scorecard is a free, easy to use, and vendor-agnostic framework to evaluate FDC3 implementations across multiple vectors."
+  },
+  {
+    "title": "Connectifi FDC3 Sandbox",
+    "publisher": "Connectifi Co.",
+    "image": "/img/users/connectifi.png",
+    "infoLink": "https://apps.connectifi-interop.com/sandbox",
+    "docsLink": "https://www.connectifi.co/post/getting-started",
+    "type": "demos",
+    "badges": [],
+    "description": "The Connectifi FDC3 Sandbox is a free FDC3 development tool that uses the Connectifi cloud service to securely enable interoperability across applications regardless of technology or device they are running on.  It uses the FDC3 standard and works without installs so that FDC3 can be used directly in a browser, bridging across desktop containers and across devices."
+  },
+  {
+    "title": "Morgan Stanley",
+    "publisher": "Morgan Stanley",
+    "image": "/img/users/MorganStanley.png",
+    "infoLink": "https://github.com/morganstanley/ComposeUI",
+    "docsLink": "https://morganstanley.github.io/ComposeUI/documentation",
+    "type": "platform-provider",
+    "badges": [],
+    "conformance": [
+      {
+        "src": "",
+        "items": []
+      },
+      {
+        "src": "/img/community/certified-2.0.png",
+        "items": [
+          {
+            "text": "Morgan Stanley ComposeUI version alpha-5 Certified Conformant With FDC3 2.0 Specification on 30th September 2024",
+            "link": "https://www.finos.org/press/fdc3-2.0-blackrock-morgan-stanley-lead-charge"
+          }
+        ]
+      }
+    ],
+    "description": "ComposeUI is a .NET based general UI Container and Unified UI and App host which enables the hosting of Web and desktop content. It supports desktop and web applications in order to provide an evergreen alternative to Electron by the use of WebView2."
+  },
+  {
+    "title": "Aladdin",
+    "publisher": "BlackRock",
+    "image": "/img/users/aladdin.png",
+    "infoLink": "https://www.blackrock.com/aladdin",
+    "type": "platform-provider",
+    "badges": [],
+    "conformance": [
+      {
+        "src": "/img/community/certified-2.0.png",
+        "items": [
+          {
+            "text": "BlackRock's Aladdin (currently unpublished) Certified Conformant With FDC3 2.0 Specification on 30th September 2024",
+            "link": "https://www.finos.org/press/fdc3-2.0-blackrock-morgan-stanley-lead-charge"
+          }
+        ]
+      }
+    ],
+    "description": "Aladdin® is a tech platform that unifies the investment management process through a common data language. With a view of your whole portfolio—across public & private markets—it enables scale, provides insights, and supports business transformation."
+  },
+  {
+    "title": "Morgan Stanley",
+    "publisher": "Morgan Stanley",
+    "image": "/img/users/MorganStanley.png",
+    "infoLink": "https://www.morganstanley.com",
+    "description": "Morgan Stanley believes that open standards like FDC3 are essential for unlocking new scenarios and efficiencies in user experience on the desktop for both our employees and our clients.",
+    "badges": [],
+    "type": "adopter"
+  },
+  {
+    "title": "FDC3 Developer Training Workshop - Rob Moffat, FINOS",
+    "publisher": "FINOS",
+    "image": "/img/training/fdc3-developer-training-workshop.png",
+    "infoLink": "https://youtu.be/9uUKTk2e-Xs?si=ndejBtoHsKIXBAYy",
+    "type": "tools-and-training",
+    "badges": [],
+    "description": "The FDC3 Developer Training Workshop led by Rob Moffat from FINOS aims to teach participants how to build FDC3-enabled applications and understand the framework for defining Contexts and Intents to enable seamless interoperability between desktop applications in the financial services industry."
+  },
+  {
+    "title": "How to Add FDC3 to Your Apps - Julianna Langston, interop.io",
+    "publisher": "FINOS",
+    "image": "/img/training/how-to-add-fdc3-to-your-apps.png",
+    "infoLink": "https://youtu.be/D6WST19pYUs?si=BtGSG7mkEdXBVEGL",
+    "type": "tools-and-training",
+    "badges": [],
+    "description": "This video training provides a practical guide on how to add the FDC3 (Financial Desktop Connectivity and Collaboration) open standard to your applications to enable interoperability between financial desktop applications."
+  },
+  {
+    "title": "FDC3 2.2 & FDC3 on the Web! - Kristopher West, interop.io & Rob Moffat, FINOS",
+    "publisher": "FINOS",
+    "image": "/img/training/fdc3-2.2.png",
+    "infoLink": "https://youtu.be/Z98eSdIt2b0?si=e54cMAY_PvBFTv-c",
+    "type": "tools-and-training",
+    "badges": [],
+    "description": "This training video discusses FDC3 2.2, which tightens several aspects of the FDC3 standard and brings long-awaited improvements, as presented by Kristopher West from interop.io and Rob Moffat from FINOS."
   }
 ]

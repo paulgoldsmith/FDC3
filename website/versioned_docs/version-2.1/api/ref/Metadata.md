@@ -89,7 +89,7 @@ Note that as `AppMetadata` instances are also `AppIdentifiers` they may be passe
 
 **See also:**
 
-- [`AppIdentifier`](Types#AppIdentifier)
+- [`AppIdentifier`](Types#appidentifier)
 - [`AppIntent.apps`](#appintent)
 - [`Icon`](#icon)
 - [`Image`](#image)
@@ -243,7 +243,7 @@ interface ImplementationMetadata {
   readonly fdc3Version: string;
 
   /** The name of the provider of the FDC3 Desktop Agent Implementation
-   *  (e.g.Finsemble, Glue42, OpenFin etc.).
+   *  (e.g. io.Connect, OpenFin etc.).
    */
   readonly provider: string;
 

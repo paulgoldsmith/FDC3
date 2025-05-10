@@ -50,8 +50,8 @@ sequenceDiagram
 
 ### Request message schemas
 
-- [https://fdc3.finos.org/schemas/2.1/bridging/broadcastAgentRequest.schema.json](/schemas/2.1/bridging/broadcastAgentRequest.schema.json)
-- [https://fdc3.finos.org/schemas/2.1/bridging/broadcastBridgeRequest.schema.json](/schemas/2.1/bridging/broadcastBridgeRequest.schema.json)
+- [https://fdc3.finos.org/schemas/2.1/bridging/broadcastAgentRequest.schema.json](pathname:///schemas/2.1/bridging/broadcastAgentRequest.schema.json)
+- [https://fdc3.finos.org/schemas/2.1/bridging/broadcastBridgeRequest.schema.json](pathname:///schemas/2.1/bridging/broadcastBridgeRequest.schema.json)
 
 ### Example
 
@@ -68,10 +68,10 @@ Outward message to the DAB:
     "meta": {
         "requestUuid": "<requestUuid>",
         "timestamp": "2022-03-...",
-        "source": [{
+        "source": {
             "appId": "agentA-app1",
             "instanceId": "c6ad5174-6f78-4582-8e96-728d93a4d7d7"
-        }]
+        }
     }
 }
 ```
@@ -90,11 +90,11 @@ which it repeats on to agent-B AND agent-C with the `source.desktopAgent` metada
     "meta": {
         "requestUuid": "<requestUuid>",
         "timestamp": "2020-03-...",
-        "source": [{
+        "source": {
             "appId": "agentA-app1",
             "instanceId": "c6ad5174-6f78-4582-8e96-728d93a4d7d7",
             "desktopAgent": "agent-A" //added by DAB
-        }]
+        }
     }
 }
 ```

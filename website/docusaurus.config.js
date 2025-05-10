@@ -1,8 +1,9 @@
-module.exports={
+module.exports = {
   "title": "FDC3",
   "tagline": "Open standards for the financial desktop",
   "url": "https://fdc3.finos.org",
   "baseUrl": "/",
+  "staticDirectories": ["static"],
   "organizationName": "finos",
   "projectName": "FDC3",
   "scripts": [
@@ -28,17 +29,15 @@ module.exports={
         "docs": {
           "showLastUpdateAuthor": true,
           "showLastUpdateTime": true,
-          "path": "../docs",
+          "path": "./docs",
           "sidebarPath": "./sidebars.json",
-        },
-        "blog": {
-          "path": "blog"
         },
         "theme": {
           "customCss": "./src/css/customTheme.css"
         },
-        "googleAnalytics": {
-          "trackingID": "UA-89349362-8"
+        "gtag": {
+          "trackingID": "G-EY9BQJ55YQ",
+          "anonymizeIP": true,
         }
       }
     ]
@@ -49,10 +48,22 @@ module.exports={
   themes: ['@docusaurus/theme-mermaid'],
   "plugins": [],
   "themeConfig": {
+    "prism": {
+      "additionalLanguages": ["typescript", "javascript", "json", "csharp"],
+      "theme": require('prism-react-renderer').themes.vsDark
+    },
+    "algolia": {
+      "appId": "YW91L9TW76",
+      "apiKey": "ab431bb4107069ef51780d8947cd8e0a",
+      "indexName": "fdc3-finos",
+      "contextualSearch": true,
+      "searchParameters": {}
+    },
     "navbar": {
       "title": "FDC3",
       "logo": {
-        "src": "img/fdc3-icon-2019.svg"
+        "src": "img/fdc3-icon-light-2019.svg",
+        "srcDark": "img/fdc3-icon-2019.svg"
       },
       "items": [
         {
@@ -86,37 +97,10 @@ module.exports={
           "position": "left"
         },
         {
-          "label": "Version",
-          "to": "/versions",
-          "position": "right",
-          "items": [
-            {
-              "label": "2.1",
-              "to": "/docs/fdc3-intro",
-              "activeBaseRegex": "docs/(?!1.0|1.1|1.2|2.0|next)"
-            },
-            {
-              "label": "2.0",
-              "to": "/docs/2.0/fdc3-intro",
-            },
-            {
-              "label": "1.2",
-              "to": "/docs/1.2/fdc3-intro"
-            },
-            {
-              "label": "1.1",
-              "to": "/docs/1.1/fdc3-intro"
-            },
-            {
-              "label": "1.0",
-              "to": "/docs/1.0/fdc3-intro"
-            },
-            {
-              "label": "Main/Unreleased",
-              "to": "/docs/next/fdc3-intro",
-              "activeBaseRegex": "docs/next/(?!support|team|resources)"
-            }
-          ]
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownItemsAfter: [{ to: '/versions', label: 'All versions' }],
+          dropdownActiveClassDisabled: true,
         }
       ]
     },
@@ -132,7 +116,7 @@ module.exports={
             },
             {
               "label": "Supported Platforms",
-              "to": "docs/supported-platforms"
+              "to": "/docs/next/api/supported-platforms"
             },
             {
               "label": "API Reference",
@@ -140,16 +124,12 @@ module.exports={
             },
             {
               "label": "Use Cases",
-              "to": "/docs/use-cases/overview"
+              "to": "/docs/next/use-cases/overview"
             },
             {
               "label": "Training",
               "to": "https://fdc3.finos.org/training"
-            },
-            {
-              "label": "Certification",
-              "to": "/docs/guides/CertificationInstructions"				
-			}
+            }
           ]
         },
         {
@@ -194,12 +174,33 @@ module.exports={
           ]
         }
       ],
-      "copyright": "<span class=\"footer-strap\">Proud member of the Fintech Open Source Foundation</span><br/><br/><span class=\"footer-copyright\">Copyright © 2023 FDC3 - FINOS</span>",
+      "copyright": "<span class=\"footer-strap\">Proud member of the Fintech Open Source Foundation</span><br/><br/><span class=\"footer-copyright\">Copyright © 2019-2025 FDC3 - FINOS</span>",
       "logo": {
         "src": "img/finos_wordmark.svg",
         "alt": "FINOS Logo",
         "width": 50,
         "href": "https://finos.org"
+      }
+    },
+    "mermaid": {
+      "options": {
+        "htmlLabels": true,
+        "markdownAutoWrap": true,
+        "wrap": true,
+        "wrappingWidth": 50,
+        "flowchart": {
+          "titleTopMargin": 30,
+          "subGraphTitleMargin": {
+            "top": 30,
+            "bottom": 30
+          },
+          "nodeSpacing": 30,
+          "rankSpacing": 50,
+          "diagramPadding": 5,
+          "useMaxWidth": true,
+          "htmlLabels": true,
+          "wrappingWidth": 50
+        }
       }
     }
   }

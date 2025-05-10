@@ -6,7 +6,7 @@ title: API Overview (2.1)
 
 The role of FDC3 API is to establish a baseline interface for interoperability between applications. Because FDC3 is largely an agreement between existing platforms and applications, standards should be optimized for ease of adoption rather than functional completeness. Functionality absent from a FDC3 specification is in no way a commentary on its importance.
 
-The following sections examine the API's use-cases and core concepts. The APIs a fully defined in both subsequent pages of this Part and a full set of TypeScript definitions in the [src](https://github.com/finos/FDC3/tree/master/src/api) directory of the [FDC3 GitHub repository](https://github.com/finos/FDC3/).
+The following sections examine the API's use-cases and core concepts. The APIs a fully defined in both subsequent pages of this Part and a full set of TypeScript definitions in the [src](https://github.com/finos/FDC3/tree/main/src/api) directory of the [FDC3 GitHub repository](https://github.com/finos/FDC3/).
 
 ## Components
 
@@ -17,8 +17,7 @@ A Desktop Agent is a desktop component (or aggregate of components) that serves 
 Examples of Desktop Agents include:
 
 - Autobahn
-- Finsemble
-- Glue42
+- io.Connect
 - OpenFin
 - Refinitiv Eikon
 
@@ -226,15 +225,15 @@ As an alternative to raising a specific intent, you may also raise an unspecifie
 
 ### Intent Results
 
-An optional [`IntentResult`](ref/Types#intentresult) may also be returned as output by an application handling an intent. Results maybe either a single `Context` object, or a `Channel` that may be used to send a stream of responses. The [`PrivateChannel`](ref/PrivateChannel) type is provided to support synchronization of data transmitted over returned channels, by allowing both parties to listen for events denoting subscription and unsubscription from the returned channel. `PrivateChannels` are only retrievable via [raising an intent](ref/DesktopAgent#raiseintent).
+An optional [`IntentResult`](ref/Types#intentresult) may also be returned as output by an application handling an intent. Results may be a single `Context` object, a `Channel` that may be used to send a stream of responses, or `void` (no result). The [`PrivateChannel`](ref/PrivateChannel) type is provided to support synchronization of data transmitted over returned channels, by allowing both parties to listen for events denoting subscription and unsubscription from the returned channel. `PrivateChannels` are only retrievable via [raising an intent](ref/DesktopAgent#raiseintent).
 
 For example, an application handling a `CreateOrder` intent might return a context representing the order and including an ID, allowing the application that raised the intent to make further calls using that ID.
 
-An optional result type is also supported when programmatically resolving an intent via [`findIntent`](ref/DesktopAgent#findintent) or [`findIntentByContext`](ref/DesktopAgent#findintentbycontext).
+An optional result type is also supported when programmatically resolving an intent via [`findIntent`](ref/DesktopAgent#findintent) or [`findIntentByContext`](ref/DesktopAgent#findintentsbycontext).
 
 ### Resolvers
 
-Successful delivery of an intent depends first upon the Desktop Agent's ability to "resolve the intent" (i.e. map the intent to a specific App instance). Where the target application is ambiguous (because there is more than one application that could resolve the intent and context) Desktop Agents may resolve intents by any suitable methodology. A common method is to display a UI that allows the user to pick the desired App from a list of those that will accept the intent and context. Alternatively, the app issuing the intent may proactively handle resolution by calling [`findIntent`](ref/DesktopAgent#findintent) or [`findIntentByContext`](ref/DesktopAgent#findintentbycontext) and then raise the intent with a specific target application, e.g.:
+Successful delivery of an intent depends first upon the Desktop Agent's ability to "resolve the intent" (i.e. map the intent to a specific App instance). Where the target application is ambiguous (because there is more than one application that could resolve the intent and context) Desktop Agents may resolve intents by any suitable methodology. A common method is to display a UI that allows the user to pick the desired App from a list of those that will accept the intent and context. Alternatively, the app issuing the intent may proactively handle resolution by calling [`findIntent`](ref/DesktopAgent#findintent) or [`findIntentByContext`](ref/DesktopAgent#findintentsbycontext) and then raise the intent with a specific target application, e.g.:
 
 ```js
 // Find apps to resolve an intent to start a chat with a given contact
@@ -421,7 +420,7 @@ When an app joins a User channel, or adds a context listener when already joined
 
 It is possible that a call to join a User channel could be rejected.  If for example, the desktop agent wanted to implement controls around what data apps can access.
 
-Joining channels in FDC3 is intended to be a behavior initiated by the end user. For example: by color linking or apps being grouped in the same workspace.  Most of the time, it is expected that apps will be joined to a channel by mechanisms outside of the app. To support programmatic management of joined channels and the implementation of channel selector UIs other than those provided outside of the app, Desktop Agent implementations MAY provide [`fdc3.joinChannel()`](ref/DesktopAgent#joinchannel), [`fdc3.getCurrentChannel()`](ref/DesktopAgent#getcurrentchannel) and [`fdc3.leaveCurrentChannel()`](ref/DesktopAgent#leavecurrentchannel) functions and if they do, MUST do so as defined in the [Desktop Agent API reference](ref/DesktopAgent).
+Joining channels in FDC3 is intended to be a behavior initiated by the end user. For example: by color linking or apps being grouped in the same workspace.  Most of the time, it is expected that apps will be joined to a channel by mechanisms outside of the app. To support programmatic management of joined channels and the implementation of channel selector UIs other than those provided outside of the app, Desktop Agent implementations MAY provide [`fdc3.joinChannel()`](ref/DesktopAgent#joinuserchannel), [`fdc3.getCurrentChannel()`](ref/DesktopAgent#getcurrentchannel) and [`fdc3.leaveCurrentChannel()`](ref/DesktopAgent#leavecurrentchannel) functions and if they do, MUST do so as defined in the [Desktop Agent API reference](ref/DesktopAgent).
 
 There SHOULD always be a clear UX indicator of what channel an app is joined to.
 

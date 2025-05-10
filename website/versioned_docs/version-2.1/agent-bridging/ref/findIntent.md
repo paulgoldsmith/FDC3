@@ -41,8 +41,8 @@ sequenceDiagram
 
 ### Request message schemas
 
-- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentAgentRequest.schema.json](/schemas/2.1/bridging/findIntentAgentRequest.schema.json)
-- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentBridgeRequest.schema.json](/schemas/2.1/bridging/findIntentBridgeRequest.schema.json)
+- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentAgentRequest.schema.json](pathname:///schemas/2.1/bridging/findIntentAgentRequest.schema.json)
+- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentBridgeRequest.schema.json](pathname:///schemas/2.1/bridging/findIntentBridgeRequest.schema.json)
 
 ### Example
 
@@ -59,10 +59,10 @@ Outward message to the DAB:
     "meta": {
         "requestUuid": "<requestUuid>",
         "timestamp": "2020-03-...",
-        "source": [{
+        "source": {
             "appId": "agentA-app1",
             "instanceId": "c6ad5174-6f78-4582-8e96-728d93a4d7d7"
-        }]
+        }
     }
 }
 ```
@@ -96,10 +96,10 @@ Note that the `source.desktopAgent` field has been populated with the id of the 
 
 ### Response message schemas
 
-- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentAgentResponse.schema.json](/schemas/2.1/bridging/findIntentAgentResponse.schema.json)
-- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentAgentErrorResponse.schema.json](/schemas/2.1/bridging/findIntentAgentErrorResponse.schema.json)
-- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentBridgeResponse.schema.json](/schemas/2.1/bridging/findIntentBridgeResponse.schema.json)
-- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentBridgeErrorResponse.schema.json](/schemas/2.1/bridging/findIntentBridgeErrorResponse.schema.json)
+- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentAgentResponse.schema.json](pathname:///schemas/2.1/bridging/findIntentAgentResponse.schema.json)
+- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentAgentErrorResponse.schema.json](pathname:///schemas/2.1/bridging/findIntentAgentErrorResponse.schema.json)
+- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentBridgeResponse.schema.json](pathname:///schemas/2.1/bridging/findIntentBridgeResponse.schema.json)
+- [https://fdc3.finos.org/schemas/2.1/bridging/findIntentBridgeErrorResponse.schema.json](pathname:///schemas/2.1/bridging/findIntentBridgeErrorResponse.schema.json)
 
 ### Example
 

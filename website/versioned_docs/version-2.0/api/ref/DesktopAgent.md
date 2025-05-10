@@ -63,7 +63,7 @@ addContextListener(contextType: string | null, handler: ContextHandler): Promise
 
 Adds a listener for incoming context broadcasts from the Desktop Agent on the current User Channel. If the consumer is only interested in a context of a particular type, they can specify that type. If the consumer is able to receive context of any type or will inspect types received, then they can pass `null` as the `contextType` parameter to receive all context types.
 
-Context broadcasts are only received from apps that are joined to the same User Channel as the listening application, hence, if the application is not currently joined to a User Channel no broadcasts will be received. If this function is called after the app has already joined a channel and the channel already contains context that would be passed to the context listener, then it will be called immediately with that context.
+Context broadcasts are primarily received from apps that are joined to the same User Channel as the listening application, hence, if the application is not currently joined to a User Channel no broadcasts will be received from User channels. If this function is called after the app has already joined a channel and the channel already contains context that matches the type of the context listener, then it will be called immediately and the context passed to the handler function. If `null` was passed as the context type for the listener and the channel contains context, then the handler function will be called immediately with the most recent context - regardless of type.
 
 Optional metadata about each context message received, including the app that originated the message, SHOULD be provided by the Desktop Agent implementation.
 
@@ -77,7 +77,7 @@ const listener = await fdc3.addContextListener(null, context => { ... });
 const contactListener = await fdc3.addContextListener('fdc3.contact', contact => { ... });
 
 // listener that logs metadata for the message a specific type
-const contactListener = await fdc3.addContextListener('fdc3.contact', (contact, metadata) => { 
+const contactListener = await fdc3.addContextListener('fdc3.contact', (contact, metadata) => {
   console.log(`Received context message\nContext: ${contact}\nOriginating app: ${metadata?.source}`);
   //do something else with the context
 });
@@ -97,7 +97,7 @@ addIntentListener(intent: string, handler: IntentHandler): Promise<Listener>;
 
 Adds a listener for incoming intents from the Desktop Agent. The handler function may return void or a promise that resolves to a [`IntentResult`](Types#intentresult), which is either a [`Context`](Types#context) object, representing any data that should be returned to the app that raised the intent, or a [`Channel`](Channel) or [`PrivateChannel`](PrivateChannel) over which data responses will be sent. The `IntentResult` will be returned to the app that raised the intent via the [`IntentResolution`](Metadata#intentresolution) and retrieved from it using the `getResult()` function.
 
-The Desktop Agent MUST reject the promise returned by the `getResult()` function of `IntentResolution` if any of the following is true: 
+The Desktop Agent MUST reject the promise returned by the `getResult()` function of `IntentResolution` if any of the following is true:
 1. The intent handling function's returned promise rejects.
 2. The intent handling function doesn't return a promise.
 3. The returned promise resolves to an invalid type.
@@ -116,7 +116,7 @@ const listener = fdc3.addIntentListener('StartChat', context => {
 });
 
 //Handle a raised intent and log the originating app metadata
-const listener = fdc3.addIntentListener('StartChat', (contact, metadata) => { 
+const listener = fdc3.addIntentListener('StartChat', (contact, metadata) => {
   console.log(`Received intent StartChat\nContext: ${contact}\nOriginating app: ${metadata?.source}`);
     return;
 });
@@ -132,7 +132,7 @@ fdc3.addIntentListener("CreateOrder", (context) => {
 //Handle a raised intent and return a PrivateChannel over which response will be sent
 fdc3.addIntentListener("QuoteStream", async (context) => {
   const channel: PrivateChannel = await fdc3.createPrivateChannel();
-  const symbol = context.id.symbol;
+  const symbol = context.id.ticker;
 
   // Called when the remote side adds a context listener
   const addContextListener = channel.onAddContextListener((contextType) => {
@@ -288,8 +288,8 @@ const appIntent = await fdc3.findIntent("StartChat");
 // {
 //   intent: { name: "StartChat", displayName: "Chat" },
 //   apps: [
-//    { appId: "Skype" }, 
-//    { appId: "Symphony" }, 
+//    { appId: "Skype" },
+//    { appId: "Symphony" },
 //    { appId: "Slack" }
 //   ]
 // }
@@ -299,14 +299,14 @@ await fdc3.raiseIntent(appIntent.intent.name, context, appIntent.apps[0]);
 
 //later, we want to raise 'StartChat' intent again
 const appIntent = await fdc3.findIntent("StartChat");
-// returns an AppIntent, but with multiple options for resolution, 
+// returns an AppIntent, but with multiple options for resolution,
 // which includes an existing instance of an application:
 // {
 //   intent: { name: "StartChat", displayName: "Chat" },
 //   apps: [
-//    { appId: "Skype" }, 
-//    { appId: "Symphony" }, 
-//    { appId: "Symphony", instanceId: "93d2fe3e-a66c-41e1-b80b-246b87120859" }, 
+//    { appId: "Skype" },
+//    { appId: "Symphony" },
+//    { appId: "Symphony", instanceId: "93d2fe3e-a66c-41e1-b80b-246b87120859" },
 //    { appId: "Slack" }
 //   ]
 ```
@@ -370,11 +370,11 @@ const appIntents = await fdc3.findIntentsByContext(context);
 //     apps: [{ appId: "Skype" }]
 //   },
 //   {
-//     intent: { name: "StartChat", displayName: "Chat" }, 
+//     intent: { name: "StartChat", displayName: "Chat" },
 //     apps: [
-//       { appId: "Skype" }, 
-//       { appId: "Symphony" }, 
-//       { appId: "Symphony", instanceId: "93d2fe3e-a66c-41e1-b80b-246b87120859" }, 
+//       { appId: "Skype" },
+//       { appId: "Symphony" },
+//       { appId: "Symphony", instanceId: "93d2fe3e-a66c-41e1-b80b-246b87120859" },
 //       { appId: "Slack" }
 //     ]
 //   },
@@ -394,7 +394,7 @@ const appIntentsForType = await fdc3.findIntentsByContext(context, "fdc3.Contact
 //     intent: { name: "ViewContact", displayName: "View Contact" },
 //     apps: [{ appId: "Symphony" }, { appId: "MyCRM", resultType: "fdc3.ContactList"}]
 // }];
- 
+
 // select a particular intent to raise
 const startChat = appIntents[1];
 
@@ -614,7 +614,7 @@ If an error occurs while opening the app, the promise MUST be rejected with an `
 let appIdentifier = { appId: 'myApp-v1.0.1' };
 let instanceIdentifier = await fdc3.open(appIdentifier);
 
-// Open an app with context 
+// Open an app with context
 let instanceIdentifier = await fdc3.open(appIdentifier, context);
 ```
 
@@ -634,7 +634,7 @@ raiseIntent(intent: string, context: Context, app?: AppIdentifier): Promise<Inte
 Raises a specific intent for resolution against apps registered with the desktop agent.
 
 The desktop agent MUST resolve the correct app to target based on the provided intent name and context data. If multiple matching apps are found, a method for resolving the intent to a target app, such as presenting the user with a resolver UI allowing them to pick an app, SHOULD be provided.
-Alternatively, the specific app or app instance to target can also be provided. A list of valid target applications and instances can be retrieved via [`findIntent`](DesktopAgent#findintent).  
+Alternatively, the specific app or app instance to target can also be provided. A list of valid target applications and instances can be retrieved via [`findIntent`](DesktopAgent#findintent).
 
 If a target app for the intent cannot be found with the criteria provided or the user either closes the resolver UI or otherwise cancels resolution, the promise MUST be rejected with an `Error` object with a `message` chosen from the [`ResolveError`](Errors#resolveerror) enumeration. If a specific target `app` parameter was set, but either the app or app instance is not available, the promise MUST be rejected with an `Error` object with either the `ResolveError.TargetAppUnavailable` or `ResolveError.TargetInstanceUnavailable` string as its `message`.
 
@@ -642,7 +642,7 @@ If you wish to raise an intent without a context, use the `fdc3.nothing` context
 
 Returns an [`IntentResolution`](Metadata#intentresolution) object with details of the app instance that was selected (or started) to respond to the intent.
 
-Issuing apps may optionally wait on the promise that is returned by the `getResult()` member of the IntentResolution. This promise will resolve when the _receiving app's_ intent handler function returns and resolves a promise. The Desktop Agent resolves the issuing app's promise with the Context object or Channel that is provided as resolution by the receiving app. The Desktop Agent MUST reject the issuing app's promise, with a string from the [`ResultError`](Errors#resulterror) enumeration, if: (1) the intent handling function's returned promise rejects, (2) the intent handling function doesn't return a promise, or (3) the returned promise resolves to an invalid type.
+Issuing apps may optionally wait on the promise that is returned by the `getResult()` member of the `IntentResolution`. This promise will resolve when the _receiving app's_ intent handler function returns and resolves a promise. The Desktop Agent resolves the issuing app's promise with the Context object, Channel object or void that is provided as resolution within the receiving app. The Desktop Agent MUST reject the issuing app's promise, with a string from the [`ResultError`](Errors#resulterror) enumeration, if: (1) the intent handling function's returned promise rejects, (2) the intent handling function doesn't return a valid response (a promise or void), or (3) the returned promise resolves to an invalid type.
 
 #### Example
 
@@ -731,7 +731,7 @@ await fdc3.raiseIntentForContext(context, targetAppIdentifier);
 addContextListener(handler: ContextHandler): Promise<Listener>;
 ```
 
-Adds a listener for incoming context broadcasts from the Desktop Agent. Provided for backwards compatibility with versions FDC3 standard <2.0.
+Adds a listener for incoming context broadcasts from the Desktop Agent. Provided for backwards compatibility with versions FDC3 standard &lt;2.0.
 
 #### See also
 
@@ -765,7 +765,7 @@ Alias to the [`joinUserChannel`](#joinuserchannel) function provided for backwar
 open(name: String, context?: Context): Promise<AppIdentifier>;
 ```
 
-Version of `open` that launches an app by name rather than `AppIdentifier`. Provided for backwards compatibility with versions of the FDC3 Standard <2.0.
+Version of `open` that launches an app by name rather than `AppIdentifier`. Provided for backwards compatibility with versions of the FDC3 Standard &lt;2.0.
 
 #### See also
 
@@ -777,7 +777,7 @@ Version of `open` that launches an app by name rather than `AppIdentifier`. Prov
 raiseIntent(intent: string, context: Context, name: String): Promise<IntentResolution>;
 ```
 
-Version of `raiseIntent` that targets an app by name rather than `AppIdentifier`. Provided for backwards compatibility with versions of the FDC3 Standard <2.0.
+Version of `raiseIntent` that targets an app by name rather than `AppIdentifier`. Provided for backwards compatibility with versions of the FDC3 Standard &lt;2.0.
 
 #### See also
 
@@ -789,7 +789,7 @@ Version of `raiseIntent` that targets an app by name rather than `AppIdentifier`
 raiseIntentForContext(context: Context, name: String): Promise<IntentResolution>;;
 ```
 
-Version of `raiseIntentForContext` that targets an app by name rather than `AppIdentifier`. Provided for backwards compatibility with versions of the FDC3 Standard <2.0.
+Version of `raiseIntentForContext` that targets an app by name rather than `AppIdentifier`. Provided for backwards compatibility with versions of the FDC3 Standard &lt;2.0.
 
 #### See also
 

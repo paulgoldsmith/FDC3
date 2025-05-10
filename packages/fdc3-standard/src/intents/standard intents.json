@@ -1,0 +1,23 @@
+{
+  "intents": [
+    "CreateInteraction",
+    "CreateOrUpdateProfile",
+    "SendChatMessage",
+    "StartCall",
+    "StartChat",
+    "StartEmail",
+    "ViewAnalysis",
+    "ViewChat",
+    "ViewChart",
+    "ViewContact",
+    "ViewHoldings",
+    "ViewInstrument",
+    "ViewInteractions",
+    "ViewMessages",
+    "ViewNews",
+    "ViewOrders",
+    "ViewProfile",
+    "ViewQuote",
+    "ViewResearch"
+  ]
+}

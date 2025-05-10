@@ -45,7 +45,7 @@ interface Context {
 
 The base interface that all contexts should extend: a context data object adhering to the [FDC3 Context Data specification](../../context/spec).
 
-This means that it must at least have a `type` property that indicates what type of data it represents, e.g. `'fdc3.contact'`. The `type` property of context objects is important for certain FDC3 operations, like [`Channel.getCurrentContext`](Channel#getCurrentContext) and [`DesktopAgent.addContextListener`](DesktopAgent#addContextListener), which allows you to filter contexts by their type.
+This means that it must at least have a `type` property that indicates what type of data it represents, e.g. `'fdc3.contact'`. The `type` property of context objects is important for certain FDC3 operations, like [`Channel.getCurrentContext`](Channel#getcurrentcontext) and [`DesktopAgent.addContextListener`](DesktopAgent#addcontextlistener), which allows you to filter contexts by their type.
 
 #### See also
 
@@ -104,12 +104,18 @@ Optional metadata about the intent & context message, including the app that ori
 ## `IntentResult`
 
 ```typescript
-type IntentResult = Context | Channel;
+type IntentResult = Context | Channel | void;
 ```
 
 Describes results that an Intent handler may optionally return that should be communicated back to the app that raised the intent, via the [`IntentResolution`](Metadata#intentresolution).
 
 Represented as a union type in TypeScript, however, this type may be rendered as an interface in other languages that both the `Context` and `Channel` types implement, allowing either to be returned by an `IntentHandler`.
+
+:::info
+
+The original release of FDC3 2.0 contained an error in the `IntentResult` type, which omitted `void` as a valid return type. It was intended that an `IntentHandler` be able to return either `void` or a Promise that resolves to `void` and, as these are valid results, no error should be thrown by `IntentResolution.getResult()`. This was corrected in FDC3 2.1 and retrospectively corrected in FDC3 2.0.
+
+:::
 
 #### See also
 
@@ -122,7 +128,7 @@ Represented as a union type in TypeScript, however, this type may be rendered as
 
 ## `Listener`
 
-A Listener object is returned when an application subscribes to intents or context broadcasts via the [`addIntentListener`](#addintentlistener) or [`addContextListener`](#addcontextlistener) methods on the [DesktopAgent](DesktopAgent) object.
+A Listener object is returned when an application subscribes to intents or context broadcasts via the [`addIntentListener`](DesktopAgent#addintentlistener) or [`addContextListener`](DesktopAgent#addcontextlistener) methods on the [DesktopAgent](DesktopAgent) object.
 
 ```typescript
 interface Listener {

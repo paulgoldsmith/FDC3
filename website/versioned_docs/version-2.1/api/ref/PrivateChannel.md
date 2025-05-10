@@ -29,7 +29,7 @@ interface  PrivateChannel extends Channel {
 - [`Channel`](Channel)
 - [`Listener`](Types#listener)
 - [`DesktopAgent.addIntentListener`](DesktopAgent#addintentlistener)
-- [`DesktopAgent.createPrivateChannel`](DesktopAgent#createPrivateChannel)
+- [`DesktopAgent.createPrivateChannel`](DesktopAgent#createprivatechannel)
 - [`DesktopAgent.raiseIntent`](DesktopAgent#raiseintent)
 
 ## Examples
@@ -77,7 +77,7 @@ Although this interaction occurs entirely in frontend code, we refer to it as th
 
 ```javascript
 try {
-    const resolution3 = await fdc3.raiseIntent("QuoteStream", { type: "fdc3.instrument", id : { symbol: "AAPL" } });
+    const resolution3 = await fdc3.raiseIntent("QuoteStream", { type: "fdc3.instrument", id : { ticker: "AAPL" } });
     try {
            const result = await resolution3.getResult();
          //check that we got a result and that it's a channel
